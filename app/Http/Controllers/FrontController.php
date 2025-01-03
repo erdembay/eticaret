@@ -11,4 +11,12 @@ class FrontController extends Controller
     {
         return view('front.index');
     }
+    public function erdem()
+    {
+        return view('front.erdem');
+    }
+    public function contact()
+    {
+        return view('front.contact');
+    }
 }
