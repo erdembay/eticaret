@@ -18,6 +18,7 @@
 </head>
 
 <body class="hold-transition register-page">
+    {{ Route::is('register') ? 'Kayıt Ol' : 'Giriş Yap' }}
     @yield('body')
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

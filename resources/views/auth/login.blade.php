@@ -10,10 +10,9 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-                <form action="" method="post">
+                <form action="{{ route('login') }}" method="POST">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="E-Posta Adresi">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -21,7 +20,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Parola">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -31,25 +30,34 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
+                                <input type="checkbox" name="remember" id="remember">
                                 <label for="remember">
-                                    Remember Me
+                                    Beni Hatırla
                                 </label>
                             </div>
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button id="btnLogin" type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
                         </div>
                         <!-- /.col -->
+                        <div class="col-12">
+                            <div class="social-auth-links text-center">
+                                <p>- veya -</p>
+                                <a href="javascript:void(0)" id="googleLogin" class="btn btn-block btn-danger">
+                                    <i class="fab fa-google-plus mr-2"></i>
+                                    Google+ Giriş Yap
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </form>
                 <!-- /.social-auth-links -->
                 <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
+                    <a href="javascript:void(0)">Şifremi Unuttum</a>
                 </p>
                 <p class="mb-0">
-                    <a href="register" class="text-center">Register a new membership</a>
+                    <a href="{{ route('register') }}" class="text-center">Henüz kayıt olmadınız mı?</a>
                 </p>
             </div>
             <!-- /.login-card-body -->
