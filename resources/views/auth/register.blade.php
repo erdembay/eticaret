@@ -10,7 +10,8 @@
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Yeni Kayıt Oluştur</p>
-                <form action="{{ route('register') }}" method="POST">
+                <form id="formRegister" action="{{ route('register') }}" method="POST">
+                    @csrf
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Ad Soyad">
                         <div class="input-group-append">
@@ -49,7 +50,7 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <button id="btnRegister" type="submit" class="btn btn-primary btn-block">Kayıt Ol</button>
+                            <a href="javascript:void(0)" id="btnRegister" class="btn btn-primary btn-block">Kayıt Ol</a>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -69,4 +70,5 @@
     <!-- /.login-box -->
 @endsection
 @push('js')
+    <script src="{{ asset('assets/js/register.js') }}"></script>
 @endpush
