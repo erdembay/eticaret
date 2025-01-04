@@ -11,4 +11,8 @@ class ProductController extends Controller
     {
         return view('front.products');
     }
+    public function detail($id)
+    {
+        return view('front.product_detail');
+    }
 }
