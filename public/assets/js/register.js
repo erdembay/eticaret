@@ -90,7 +90,20 @@ document.addEventListener("DOMContentLoaded", function () {
                                 elementValue
                             ))
                     ) {
-                        alert(validationMessages[rule][fieldKey]);
+                        toastr.options = {
+                            closeButton: true,
+                            debug: false,
+                            newestOnTop: false,
+                            progressBar: true,
+                            positionClass: "toast-bottom-center",
+                            preventDuplicates: false,
+                            onclick: null,
+                            showEasing: "swing",
+                            hideEasing: "linear",
+                            showMethod: "fadeIn",
+                            hideMethod: "fadeOut",
+                        };
+                        toastr["error"](validationMessages[rule][fieldKey]);
                         fail = true;
                         break ruleName;
                     } else {
