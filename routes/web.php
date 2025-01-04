@@ -9,6 +9,7 @@ use App\Http\Controllers\MyOrdersController;
 
 Route::get('/', [FrontController::class, 'index']);
 Route::get('/contact', [FrontController::class, 'contact']);
+Route::get('/login', [FrontController::class, 'login']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/product/{id}', [ProductController::class, 'detail']);
 Route::get('/cart', [CartController::class, 'index']);
