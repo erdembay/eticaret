@@ -3,6 +3,9 @@
 namespace App\Observers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
+use App\Notifications\UserWelcomeMailNotification;
 
 class UserObserver
 {
@@ -11,8 +14,9 @@ class UserObserver
      */
     public function created(User $user): void
     {
-        //
-        dd('User created');
+        $token = Str::random(40); // * 40 karakterlik rastgele bir token oluşturduk.
+        Cache::put('activation_token_'. $token, $user->id, 3600); // * 1 saat boyunca tokeni sakladık.
+        $user->notify(new UserWelcomeMailNotification($token)); // * UserWelcomeNotification notificationını gönderdik.
     }
 
     /**
