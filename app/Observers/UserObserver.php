@@ -24,7 +24,13 @@ class UserObserver
      */
     public function updated(User $user): void
     {
-        //
+        if($user->isDirty('email')) { // * Eğer email alanı değiştiyse
+            $user->email_verified_at = null; // * email_verified_at alanını null yap
+            $user->save(); // * kaydet
+        }
+        else if($user->isDirty('email_verified_at')) { // * Eğer email_verified_at alanı değiştiyse
+            Cache::forget('activation_token_'. request()->token); // * email_verified_at alanını cache'ten sil
+        }
     }
 
     /**

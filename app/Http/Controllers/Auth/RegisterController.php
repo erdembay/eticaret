@@ -38,7 +38,6 @@ class RegisterController extends Controller
         $user = User::findOrFail($userId); // * Kullanıcıyı buluyoruz. Eğer kullanıcı yoksa hata dönecektir.
         $user->email_verified_at = now(); // * email_verified_at alanını güncelliyoruz.
         $user->save(); // * Kullanıcıyı kaydediyoruz.
-        Cache::forget('activation_token_'. $token); // * Cache üzerinden tokeni siliyoruz.
         Auth::login($user); // * Kullanıcıyı oturum açtık.
         alert()->success('Başarılı!', 'E-posta adresiniz onaylandı.'); // * SweetAlert ile mesaj verdik.
         return redirect()->route('admin.index'); // * Giriş sayfasına yönlendirme yaptık.
