@@ -8,17 +8,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 
 class UserWelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    // public $user; // * User modelini kullanabilmek için tanımladık.
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public User $user, public string $token)
     {
         //
+        // $this->user = $user; // * User modelini kullanabilmek için tanımladık.
     }
 
     /**
@@ -27,7 +30,7 @@ class UserWelcomeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'User Welcome Mail',
+            subject: 'Hoşgeldin!',
         );
     }
 
@@ -37,7 +40,8 @@ class UserWelcomeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'email.auth.welcome',
+            with: ['user' => $this->user, 'token' => $this->token],
         );
     }
 

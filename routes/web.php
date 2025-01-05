@@ -29,6 +29,8 @@ Route::middleware('throttle:registration')->group(function () {
     Route::post('/register', [RegisterController::class, 'register']);
 });
 
+Route::get('/activation/{token}', [RegisterController::class, 'activation'])->name('activation');
+
 Route::middleware('throttle:login')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
