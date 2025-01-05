@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Events\UserRegisterEvent;
 
 class UserRegisterListener
 {
@@ -18,7 +19,7 @@ class UserRegisterListener
     /**
      * Handle the event.
      */
-    public function handle(object $event): void
+    public function handle(UserRegisterEvent $event): void
     {
         //
     }
