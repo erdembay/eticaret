@@ -17,11 +17,20 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
+
+    /**
+     * ? Fillable ne işe yarar?
+     * * Fillable, modelin hangi alanların doldurulabileceğini belirlemek için kullanılır.
+     * * Yani, bu alanlar dışında bir alan doldurulmaya çalışıldığında hata alınır.
+     * * Örneğin, bir kullanıcı kaydı oluşturulurken, sadece name, email ve password alanları doldurulabilir.
+     */
+    protected $fillable = [ // $fillable kullanımı
         'name',
         'email',
         'password',
     ];
+
+    // protected $guarded = ['created_at']; // * created_at alanı dışında tüm alanları koru.  // * $guarded kullanımı
 
     /**
      * The attributes that should be hidden for serialization.
@@ -38,7 +47,12 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
+    /**
+    * ? Cast ne işe yarar?
+    * * Cast, modelin belirli alanlarının belirli veri türlerine dönüştürülmesini sağlar.
+    * * Örneğin, bir tarih alanını datetime veri türüne dönüştürmek için cast kullanabilirsiniz.
+    */
+    protected function casts(): array // casts kullanımı
     {
         return [
             'email_verified_at' => 'datetime',
