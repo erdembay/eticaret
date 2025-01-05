@@ -9,7 +9,7 @@ use App\Http\Controllers\Front\MyOrdersController;
 use App\Http\Controllers\Front\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-Route::get('/', [FrontController::class, 'index']);
+Route::get('/', [FrontController::class, 'index'])->middleware('throttle:5,60');
 
 Route::get('/contact', [FrontController::class, 'contact']);
 Route::get('/login', [FrontController::class, 'login']);
@@ -24,11 +24,15 @@ Route::get('/checkout', [CheckoutController::class, 'index']);
 Route::get('/my-orders', [MyOrdersController::class, 'index']);
 Route::get('/my-orders/detail', [MyOrdersController::class, 'detail']);
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
+Route::middleware('throttle:registration')->group(function () {
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register']);
+});
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+Route::middleware('throttle:login')->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
+});
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
