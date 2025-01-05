@@ -27,7 +27,7 @@ class UserRegisterListener
     {
         //
         $token = Str::random(40); // * 40 karakterlik rastgele bir token oluşturduk.
-        Cache::put('activation_token_'. $token, $event->user->id, 900); // * 900 saniye boyunca tokeni sakladık.
+        Cache::put('activation_token_'. $token, $event->user->id, 3600); // * 900 saniye boyunca tokeni sakladık.
         Mail::to($event->user->email)->send(new UserWelcomeMail($event->user, $token)); // * UserWelcomeMail mailini gönderdik.
     }
 }
