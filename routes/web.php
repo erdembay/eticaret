@@ -36,6 +36,6 @@ Route::middleware('throttle:login')->group(function () {
     Route::post('/login', [LoginController::class, 'login']);
 });
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index']);
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
 });

@@ -1,7 +1,6 @@
 @extends('layouts.auth')
 @section('title', 'Register')
 @push('css')
-    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 @endpush
 @section('body')
     <div class="register-box">
@@ -60,6 +59,18 @@
                         @error('password_confirmation')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
+                    </div>
+                    {{-- Beni Hatırla --}}
+                    <div class="row mb-2">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Beni Hatırla
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
                     </div>
                     @if ($errors->any())
                         <div class="row">
