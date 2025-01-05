@@ -21,7 +21,8 @@ class RegisterController extends Controller
         $data = $request->only('name', 'email', 'password'); // * only fonksiyonu ile sadece belirtilen alanları alabiliriz.
         // $data = $request->except('_token'); // * except fonksiyonu ile belirtilen alanları hariç alabiliriz.
         $user = User::create($data); // * User modeli üzerinden create fonksiyonu ile veritabanına kayıt ekledik.
-        event(new UserRegisterEvent($user)); // * UserRegisterEvent eventini tetikledik.
+        // event(new UserRegisterEvent($user)); // * UserRegisterEvent eventini tetikledik.
+        
         dd('Kayıt işlemi başarılı.');
     }
     public function activation(Request $request, $token)

@@ -12,6 +12,7 @@ class UserObserver
     public function created(User $user): void
     {
         //
+        dd('User created');
     }
 
     /**

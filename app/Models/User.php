@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy; // * ObservedBy ekledik.
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notifiable; // * Notifiable ekledik.
+use App\Observers\UserObserver;     // * UserObserver ekledik.
 
+#[ObservedBy(UserObserver::class)] // * UserObserver sınıfını bağladık.
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
