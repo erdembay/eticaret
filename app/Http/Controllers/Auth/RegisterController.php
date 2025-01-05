@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Hash; // * Hash kütüphanesini kullanmak için ekledik.
 use App\Models\User; // * User modelini kullanmak için ekledik.
+use App\Events\UserRegisterEvent; // * UserRegisterEvent eventini kullanmak için ekledik.
 
 class RegisterController extends Controller
 {
@@ -25,7 +26,7 @@ class RegisterController extends Controller
             // 'password' => Hash::make($value) // * Hash kütüphanesini kullanarak şifreleme yapabiliriz.
         ];
         // $data = $request->except('_token'); // * except fonksiyonu ile belirtilen alanları hariç alabiliriz.
-
-        return User::create($body); // * User modeli üzerinden create fonksiyonu ile veritabanına kayıt ekledik.
+        $user = User::create($body); // * User modeli üzerinden create fonksiyonu ile veritabanına kayıt ekledik.
+        event(new UserRegisterEvent($user)); // * UserRegisterEvent eventini tetikledik.
     }
 }
