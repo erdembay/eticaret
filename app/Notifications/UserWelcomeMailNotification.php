@@ -14,7 +14,7 @@ class UserWelcomeMailNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(public string $token)
     {
         //
     }
@@ -32,12 +32,11 @@ class UserWelcomeMailNotification extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(object $user): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject('Hoşgeldiniz')
+            ->view('email.auth.welcome', ['user' => $user, 'token' => $this->token]);
     }
 
     /**
