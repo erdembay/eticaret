@@ -35,9 +35,24 @@ class RegisterController extends Controller
             alert()->warning('Uyarı!', 'Token geçersiz ya da süresi dolmuş!'); // * SweetAlert ile mesaj verdik.
             return redirect()->route('register'); // * Kayıt sayfasına yönlendirme yaptık.
         }
-        $user = User::findOrFail($userId); // * Kullanıcıyı buluyoruz. Eğer kullanıcı yoksa hata dönecektir.
-        $user->email_verified_at = now(); // * email_verified_at alanını güncelliyoruz.
-        $user->save(); // * Kullanıcıyı kaydediyoruz.
+
+        /**
+         * * 1. Yöntem (Eloquent ORM)
+         * * 2. Yöntem (Query Builder)
+         */
+
+        // $user = User::findOrFail($userId); // * Kullanıcıyı buluyoruz. Eğer kullanıcı yoksa hata dönecektir.
+        // $user->email_verified_at = now(); // * email_verified_at alanını güncelliyoruz.
+        // $user->save(); // * Kullanıcıyı kaydediyoruz.
+
+        $userQuery = User::query()
+            ->where('id', $userId);
+        $user = $userQuery->firstOrFail(); // * Kullanıcıyı buluyoruz. Eğer kullanıcı yoksa hata dönecektir.
+        $userQuery
+            ->update([
+                'email_verified_at' => now()
+            ]); // * email_verified_at alanını güncelliyoruz.
+
         Auth::login($user); // * Kullanıcıyı oturum açtık.
         alert()->success('Başarılı!', 'E-posta adresiniz onaylandı.'); // * SweetAlert ile mesaj verdik.
         return redirect()->route('admin.index'); // * Giriş sayfasına yönlendirme yaptık.
