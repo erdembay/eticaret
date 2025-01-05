@@ -9,7 +9,7 @@ use App\Http\Controllers\Front\MyOrdersController;
 use App\Http\Controllers\Front\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-Route::get('/', [FrontController::class, 'index'])->middleware('throttle:5,60');
+Route::get('/', [FrontController::class, 'index'])->middleware('throttle:10000,60');
 
 Route::get('/contact', [FrontController::class, 'contact']);
 Route::get('/login', [FrontController::class, 'login']);

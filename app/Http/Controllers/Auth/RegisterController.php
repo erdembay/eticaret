@@ -19,14 +19,8 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         $data = $request->only('name', 'email', 'password'); // * only fonksiyonu ile sadece belirtilen alanları alabiliriz.
-        $body = [
-            'name' => $data->name,
-            'email' => $data->email,
-            'password' => bcrypt($data->password), // * bcrypt fonksiyonu ile şifreleme yapabiliriz.
-            // 'password' => Hash::make($value) // * Hash kütüphanesini kullanarak şifreleme yapabiliriz.
-        ];
         // $data = $request->except('_token'); // * except fonksiyonu ile belirtilen alanları hariç alabiliriz.
-        $user = User::create($body); // * User modeli üzerinden create fonksiyonu ile veritabanına kayıt ekledik.
+        $user = User::create($data); // * User modeli üzerinden create fonksiyonu ile veritabanına kayıt ekledik.
         event(new UserRegisterEvent($user)); // * UserRegisterEvent eventini tetikledik.
     }
 }

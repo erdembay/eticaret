@@ -21,7 +21,6 @@ class UserRegisterEvent
     public function __construct(public User $user)
     {
         //
-        $this->user = $user;
     }
 
     /**
