@@ -1,6 +1,7 @@
 @extends('layouts.auth')
 @section('title', 'Login')
 @push('css')
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 @endpush
 @section('body')
     <div class="login-box">
@@ -10,9 +11,23 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('login') }}" id="formLogin" method="POST">
+                    @csrf
+                    @if ($errors->any())
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        {{ $error }}
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    @endif
                     <div class="input-group mb-3">
-                        <input type="email" name="email" id="email" class="form-control" placeholder="E-Posta Adresi">
+                        <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}"
+                            placeholder="E-Posta Adresi">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -38,7 +53,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button id="btnLogin" type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+                            <a href="javascript:void(0)" id="btnLogin" class="btn btn-primary btn-block">Giriş Yap</a>
                         </div>
                         <!-- /.col -->
                         <div class="col-12">
@@ -65,4 +80,6 @@
     </div>
 @endsection
 @push('js')
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/login.js') }}"></script>
 @endpush

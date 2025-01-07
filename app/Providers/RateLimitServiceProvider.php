@@ -26,7 +26,7 @@ class RateLimitServiceProvider extends ServiceProvider
             return Limit::perMinute(100)->by($job->ip()); // Dakikada 10 istek sınırı koyduk. İp adresine göre sınırlama yapılacak.
         });
         RateLimiter::for('login', function ($job) {
-            return Limit::perHour(10)->by($job->ip()); // Dakikada 10 istek sınırı koyduk. İp adresine göre sınırlama yapılacak.
+            return Limit::perHour(100)->by($job->ip()); // Dakikada 10 istek sınırı koyduk. İp adresine göre sınırlama yapılacak.
         });
         RateLimiter::for('high-traffic-page', function ($job) {
             return Limit::perMinute(2)->by($job->ip()); // Dakikada 2 istek sınırı koyduk. İp adresine göre sınırlama yapılacak.

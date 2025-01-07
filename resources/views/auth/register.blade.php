@@ -1,6 +1,7 @@
 @extends('layouts.auth')
 @section('title', 'Register')
 @push('css')
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 @endpush
 @section('body')
     <div class="register-box">
@@ -110,5 +111,5 @@
 @endsection
 @push('js')
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
-    <script src="{{ asset('assets/js/register.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/register.js') }}"></script>
 @endpush

@@ -122,9 +122,13 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                <i class="fas fa-expand-arrows-alt"></i>
+            <a href="javascript:;" onclick="event.preventDefault();document.getElementById('logoutForm').submit()"
+                class="nav-link">
+                <i class="fas fa-sign-out-alt"></i>
             </a>
+            <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </li>
     </ul>
 </nav>
