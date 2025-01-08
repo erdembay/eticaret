@@ -12,7 +12,7 @@ class VerifySendMailCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'verify:send-mail {user : User ID değeri alır} {--Q|queue} {--T|tc=0}';
+    protected $signature = 'verify:send-mail {user? : User ID değeri alır} {--Q|queue} {--T|tc=0}';
 
     /**
      * The console command description.
@@ -34,7 +34,7 @@ class VerifySendMailCommand extends Command
             $users
         );
         $userss = $this->withProgressBar(User::all(), function (User $user) {
-            $this->info("{$user->name} - {$user->email}");
+            $this->info("{$user->name} - {$user->email}"); // info, comment, question, error, warn methods
             $this->newLine(2);
             $this->line("{$user->name} - {$user->email}");
             $this->newLine(2);
