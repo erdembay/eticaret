@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy; // * ObservedBy ekledik.
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable; // * Notifiable ekledik.
 use App\Observers\UserObserver;     // * UserObserver ekledik.
+use Spatie\Permission\Traits\HasRoles; // * HasRoles ekledik.
 
 #[ObservedBy(UserObserver::class)] // * UserObserver sınıfını bağladık.
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
