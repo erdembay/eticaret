@@ -14,7 +14,11 @@
                 <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Erdem Bay</a>
+                {{-- user bilgisini nasıl alacagım? --}}
+                <a href="#" class="d-block">{{ Auth::user()->name }}
+                    <br>
+                    {{ Auth::user()->email }}
+                </a>
             </div>
         </div>
         <!-- Sidebar Menu -->
