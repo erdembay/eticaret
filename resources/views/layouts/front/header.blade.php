@@ -79,6 +79,11 @@
                         <ul class="nav navbar-nav">
                             @auth
                                 <li>
+
+                                    <a href="javascript:void(0);">
+                                        {{ Auth::user()->name }}</a>
+                                </li>
+                                <li>
                                     <a href="#"><i class="fa fa-user"></i>
                                         Account</a>
                                 </li>

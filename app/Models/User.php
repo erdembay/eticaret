@@ -31,6 +31,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_verified_at',
     ];
 
     // protected $guarded = ['created_at']; // * created_at alanı dışında tüm alanları koru.  // * $guarded kullanımı

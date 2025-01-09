@@ -44,5 +44,5 @@ Route::prefix('login')->middleware('throttle:login')->group(function () {
 });
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/activation/{token}', [RegisterController::class, 'activation'])->name('activation');
-Route::get('/auth/{driver}/callback', [LoginController::class, 'socialite'])->name('login.socialite');
-Route::get('/auth/redirect', [LoginController::class, 'socialiteVerify'])->name('login.socialite-verify');
+Route::get('/auth/{driver}/redirect', [LoginController::class, 'socialite'])->name('login.socialite');
+Route::get('/auth/{driver}/callback', [LoginController::class, 'socialiteVerify'])->name('login.socialite-verify');

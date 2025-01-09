@@ -59,7 +59,8 @@
                         <div class="col-12">
                             <div class="social-auth-links text-center">
                                 <p>- veya -</p>
-                                <a href="javascript:void(0)" id="googleLogin" class="btn btn-block btn-danger">
+                                <a href="{{ route('login.socialite', ['driver' => 'google']) }}" id="googleLogin"
+                                    class="btn btn-block btn-danger">
                                     <i class="fab fa-google-plus mr-2"></i>
                                     Google+ Giriş Yap
                                 </a>
