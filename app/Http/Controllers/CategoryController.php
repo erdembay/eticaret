@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categoryList = Category::all(); // Kategori listesini alır.
+        $categoryList = Category::paginate(10); // Kategori listesini alır.
         return view('admin.category.index', compact('categoryList')); // admin/category/index.blade.php sayfasına yönlendirir.
     }
 
