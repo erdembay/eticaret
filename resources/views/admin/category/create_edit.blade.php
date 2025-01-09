@@ -12,6 +12,7 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form action="{{ route('admin.category.store') }}" method="POST" role="form" id="quickForm">
+                    @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Kategori Adı</label>
@@ -74,7 +75,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                        <a href="javascript:void(0);" id="btnSubmit" class="btn btn-primary">Kaydet</a>
                     </div>
                 </form>
             </div>
@@ -82,4 +83,81 @@
     </div>
 @endsection
 @push('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let bntSubmit = document.getElementById('btnSubmit');
+            let form = document.getElementById('quickForm');
+            let name = document.getElementById('name');
+            let slug = document.getElementById('slug');
+            let short_description = document.getElementById('short_description');
+            let description = document.getElementById('description');
+            let parent_id = document.getElementById('parent_id');
+            let status = document.getElementById('status');
+            bntSubmit.addEventListener('click', function() {
+                if (name.value.trim().length < 1) {
+                    toastr.options = {
+                        closeButton: true,
+                        debug: false,
+                        newestOnTop: false,
+                        progressBar: true,
+                        positionClass: "toast-bottom-center",
+                        preventDuplicates: false,
+                        onclick: null,
+                        showEasing: "swing",
+                        hideEasing: "linear",
+                        showMethod: "fadeIn",
+                        hideMethod: "fadeOut",
+                    };
+                    toastr.error('Kategori Adı Boş Bırakılamaz.', 'Hata');
+                } else if (slug.value.trim().length < 1) {
+                    toastr.options = {
+                        closeButton: true,
+                        debug: false,
+                        newestOnTop: false,
+                        progressBar: true,
+                        positionClass: "toast-bottom-center",
+                        preventDuplicates: false,
+                        onclick: null,
+                        showEasing: "swing",
+                        hideEasing: "linear",
+                        showMethod: "fadeIn",
+                        hideMethod: "fadeOut",
+                    };
+                    toastr.error('Kategori Slug Boş Bırakılamaz.', 'Hata');
+                } else if (short_description.value.trim().length < 1) {
+                    toastr.options = {
+                        closeButton: true,
+                        debug: false,
+                        newestOnTop: false,
+                        progressBar: true,
+                        positionClass: "toast-bottom-center",
+                        preventDuplicates: false,
+                        onclick: null,
+                        showEasing: "swing",
+                        hideEasing: "linear",
+                        showMethod: "fadeIn",
+                        hideMethod: "fadeOut",
+                    };
+                    toastr.error('Kısa Açıklama Boş Bırakılamaz.', 'Hata');
+                } else if (description.value.trim().length < 1) {
+                    toastr.options = {
+                        closeButton: true,
+                        debug: false,
+                        newestOnTop: false,
+                        progressBar: true,
+                        positionClass: "toast-bottom-center",
+                        preventDuplicates: false,
+                        onclick: null,
+                        showEasing: "swing",
+                        hideEasing: "linear",
+                        showMethod: "fadeIn",
+                        hideMethod: "fadeOut",
+                    };
+                    toastr.error('Açıklama Boş Bırakılamaz.', 'Hata');
+                } else {
+                    form.submit();
+                }
+            });
+        });
+    </script>
 @endpush
