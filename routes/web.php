@@ -23,10 +23,10 @@ Route::get('/cart', [CartController::class, 'index']);
 
 Route::get('/checkout', [CheckoutController::class, 'index']);
 
-Route::get('/my-orders', [MyOrdersController::class, 'index']);
-Route::get('/my-orders/detail', [MyOrdersController::class, 'detail']);
-
-
+Route::prefix('my-orders')->name('order.')->middleware('auth')->group(function () {
+    Route::get('/', [MyOrdersController::class, 'index'])->name('index');
+    Route::get('/detail', [MyOrdersController::class, 'detail'])->name('detail');
+});
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');

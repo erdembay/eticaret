@@ -27,7 +27,11 @@ class LoginController extends Controller
         }else{
             return redirect()->route('login')->withErrors('E-posta adresi veya şifre hatalı.');
         }
-        return redirect()->intended('/admin');
+        if($user->hasRole(['super-admin', 'product-manager', 'order-manager', 'user-manager', 'category-manager'])){ // Super Admin Role Check
+            return redirect()->route('admin.index');
+        }
+        return redirect()->route('order.index');
+        // return redirect()->intended('/admin');
     }
     public function logout()
     {
