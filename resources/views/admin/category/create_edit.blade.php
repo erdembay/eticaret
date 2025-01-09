@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label for="parent_id">Ana Kategori (Opsiyonel)</label>
                             <select class="form-control" id="parent_id" name="parent_id">
-                                <option value="">Ana Kategori Seçiniz (Opsiyonel)</option>
+                                <option value="0">Ana Kategori Seçiniz (Opsiyonel)</option>
                                 @foreach ($categoryList as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach

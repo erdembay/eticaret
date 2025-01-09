@@ -16,5 +16,6 @@ class Category extends Model
         'status',
         'short_description',
         'description',
+        'parent_id',
     ];
 }
