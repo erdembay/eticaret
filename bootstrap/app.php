@@ -15,7 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         VerifySendMailCommand::class,
     ])
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias('auth', \App\Http\Middleware\Authenticate::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
