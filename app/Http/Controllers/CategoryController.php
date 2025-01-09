@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 
 class CategoryController extends Controller
 {
@@ -72,9 +73,10 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage. // Türkçe çevirisi: Depolama alanındaki belirtilen kaynağı günceller.
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         //
+
     }
 
     /**

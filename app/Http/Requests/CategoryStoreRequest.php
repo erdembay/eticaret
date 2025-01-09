@@ -53,4 +53,17 @@ class CategoryStoreRequest extends FormRequest
             'description.min' => 'Kategori açıklama en az 2 karakter olmalıdır.',
         ];
     }
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    public function prepareForValidation() // Doğrulamaya hazırlan
+    {
+        if(!is_null($this->slug)){ // Eğer slug boş değilse
+            $this->merge([ // Birleştir
+                'slug' => Str::slug($this->slug) // Slug'ı oluştur
+            ]);
+        }
+    }
 }
