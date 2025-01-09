@@ -112,6 +112,13 @@ class GeneralRolePermissionSeeder extends Seeder
             ],
             [
                 'name' => 'category.edit',
+                'description' => 'Kategori Güncelleme Sayfası',
+                'guard_name' => 'web',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'category.update',
                 'description' => 'Kategori Güncelleme Yetkisi',
                 'guard_name' => 'web',
                 'created_at' => now(),

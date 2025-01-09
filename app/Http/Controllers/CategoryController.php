@@ -76,7 +76,20 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, Category $category)
     {
         //
-
+        $data = $request->only(['name', 'description', 'short_description']);
+        $slug = Str::slug($request->slug);
+        if(is_null($slug)){
+            $slug = Str::slug(mb_substr($data['name'], 0, 40));
+            $checkSlug = Category::where('slug', $slug)->first();
+            if($checkSlug){
+                return redirect()->back()->withErrors(['slug' => 'Bu slug daha önce alınmış.'])->withInput();
+            }
+        }
+        $data['slug'] = $slug;
+        $data['status'] = $request->has('status') ? true : false;
+        $data['parent_id'] = $request->parent_id == 0 ? null : $request->parent_id;
+        $category->update($data);
+        return redirect()->route('admin.category.index');
     }
 
     /**
@@ -85,5 +98,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+        dd($category);
     }
 }

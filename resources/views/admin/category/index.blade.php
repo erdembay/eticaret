@@ -55,7 +55,7 @@
                                                 class="btn btn-outline-success btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="" class="btn btn-outline-danger btn-sm">
+                                            <a href="{{ route('admin.category.destroy', ['category' => $category->id]) }}" class="btn btn-outline-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>
