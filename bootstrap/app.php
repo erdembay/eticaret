@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Foundation\Console\Commands\VerifySendMailCommand;
+use App\Http\Middleware\AdminPanelRoleCheckMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -15,7 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         VerifySendMailCommand::class,
     ])
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->alias('auth', \App\Http\Middleware\Authenticate::class);
+        $middleware->alias([
+            'admin.check' => AdminPanelRoleCheckMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

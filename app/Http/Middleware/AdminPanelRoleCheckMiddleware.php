@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPanelRoleCheckMiddleware
 {
@@ -15,6 +16,10 @@ class AdminPanelRoleCheckMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        $authUser = Auth::user();
+        if ($authUser->hasRole(['super-admin', 'category-manager', 'product-manager', 'order-manager', 'user-manager'])) {
+            return $next($request);
+        }
+        return redirect()->route('index');
     }
 }

@@ -28,7 +28,7 @@ Route::prefix('my-orders')->name('order.')->middleware('auth')->group(function (
     Route::get('/detail', [MyOrdersController::class, 'detail'])->name('detail');
 });
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.check'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('/orders', [AdminController::class, 'index'])->name('orders');
 });
