@@ -6,10 +6,17 @@
     {{-- kategori listele --}}
     <div class="row justify-content-center">
         <div class="col col-11">
-            <div class="card card-primary">
+            <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title
-                ">Kategori Listesi</h3>
+                    <div class="float-right">
+                        <a href="{{ route('admin.category.create') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus mr-2"></i>
+                            Yeni Kategori Ekle
+                        </a>
+                    </div>
+                    <h3 class="card-title">
+                        Kategori Listesi
+                    </h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -44,7 +51,7 @@
                                                 class="btn btn-outline-info btn-sm">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('admin.category.edit', $category->id) }}"
+                                            <a href="{{ route('admin.category.edit', ['category' => $category->id]) }}"
                                                 class="btn btn-outline-success btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>
@@ -62,18 +69,8 @@
                 </div>
                 <div class="card-footer">
                     <div class="row">
-                        <div class="col col-6">
-                            <div class="float-left">
-                                {{ $categoryList->links() }}
-                            </div>
-                        </div>
-                        <div class="col col-6">
-                            <div class="float-right">
-                                <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-plus mr-2"></i>
-                                    Yeni Kategori Ekle
-                                </a>
-                            </div>
+                        <div class="col col-12">
+                            {{ $categoryList->links() }}
                         </div>
                     </div>
                 </div>

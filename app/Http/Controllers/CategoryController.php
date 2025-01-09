@@ -56,6 +56,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+        dd($category);
     }
 
     /**
@@ -64,7 +65,8 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
-
+        $categoryList = Category::all();
+        return view('admin.category.create_edit', compact('category', 'categoryList'));
     }
 
     /**
