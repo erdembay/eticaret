@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. // Türkçe çevirisi: Kaynağın listesini görüntüler.
      */
     public function index()
     {
@@ -16,15 +16,16 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource. // Türkçe çevirisi: Yeni bir kaynak oluşturmak için formu gösterir.
      */
     public function create()
     {
-        //
+        $categoryList = Category::all(); // Kategori listesini alır.
+        return view('admin.category.create_edit', compact('categoryList')); // admin/category/create_edit.blade.php sayfasına yönlendirir.
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage. // Türkçe çevirisi: Depolama alanında yeni oluşturulan kaynağı saklar.
      */
     public function store(Request $request)
     {
@@ -32,7 +33,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource. // Türkçe çevirisi: Belirtilen kaynağı görüntüler.
      */
     public function show(Category $category)
     {
@@ -40,7 +41,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource. // Türkçe çevirisi: Belirtilen kaynağı düzenlemek için formu gösterir.
      */
     public function edit(Category $category)
     {
@@ -48,7 +49,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage. // Türkçe çevirisi: Depolama alanındaki belirtilen kaynağı günceller.
      */
     public function update(Request $request, Category $category)
     {
@@ -56,7 +57,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage. // Türkçe çevirisi: Depolama alanındaki belirtilen kaynağı kaldırır.
      */
     public function destroy(Category $category)
     {

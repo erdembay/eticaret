@@ -9,7 +9,7 @@ use App\Http\Controllers\Front\MyOrdersController;
 use App\Http\Controllers\Front\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', [FrontController::class, 'index'])->middleware('throttle:10000,60')->name('index');
 
@@ -31,6 +31,7 @@ Route::prefix('my-orders')->name('order.')->middleware('auth')->group(function (
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.check'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('/orders', [AdminController::class, 'index'])->name('orders');
+    Route::resource('category', CategoryController::class);
 });
 
 

@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('permissions', function (Blueprint $table) {
-            $table->string('description')->nullable()->after('name');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->unsignedBigInteger('parent_id')->nullable()->after('id');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('permissions', function (Blueprint $table) {
-            $table->dropColumn('description');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropColumn('parent_id');
         });
     }
 };
