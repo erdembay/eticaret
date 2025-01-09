@@ -19,6 +19,8 @@ class GeneralRolePermissionSeeder extends Seeder
         DB::table('permissions')->truncate();
         DB::table('roles')->truncate();
         DB::table('role_has_permissions')->truncate();
+        DB::table('model_has_permissions')->truncate();
+        DB::table('model_has_roles')->truncate();
         $permissions = [
             //personel
             [

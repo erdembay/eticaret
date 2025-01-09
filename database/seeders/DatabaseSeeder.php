@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 // use Database\Seeders\CategorySeeder;
 use Database\Seeders\RolePermissions\GeneralRolePermissionSeeder;
+use Database\Seeders\User\InitializeUserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,7 +23,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-            GeneralRolePermissionSeeder::class
+            GeneralRolePermissionSeeder::class,
+            InitializeUserSeeder::class
         ]);
     }
 }
