@@ -18,4 +18,9 @@ class Category extends Model
         'description',
         'parent_id',
     ];
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id', 'id')->where('status', true)->with('children'); // Aktif alt kategorileri alır ve alt kategorilerin alt kategorilerini de yükler.
+    }
 }

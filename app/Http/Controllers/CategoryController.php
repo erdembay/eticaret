@@ -100,4 +100,9 @@ class CategoryController extends Controller
         //
         dd($category);
     }
+
+    public function front()
+    {
+        dd('front');
+    }
 }
