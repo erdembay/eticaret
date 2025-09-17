@@ -97,12 +97,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
-        dd($category);
+        $category->delete();
+        return redirect()->route('admin.category.index');
     }
 
     public function front()
     {
-        dd('front');
+        $categories = Category::query()->with('children')->whereHas('children')->whereNull('parent_id')->get();
+        return view('categories', compact('categories'));
     }
 }

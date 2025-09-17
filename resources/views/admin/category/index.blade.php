@@ -55,7 +55,7 @@
                                                 class="btn btn-outline-success btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="{{ route('admin.category.destroy', ['category' => $category->id]) }}" class="btn btn-outline-danger btn-sm">
+                                            <a href="javascript:void(0)" class="btn btn-outline-danger btn-sm btn-delete-category" data-id="{{ $category->id }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>
@@ -66,6 +66,10 @@
                         <tfoot>
                         </tfoot>
                     </table>
+                        <form action="{{ route('admin.category.destroy', ['category' => $category->id]) }}" id="deleteForm" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                 </div>
                 <div class="card-footer">
                     <div class="row">
@@ -81,4 +85,21 @@
     </div>
 @endsection
 @push('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DataTable Başlatma
+            let deleteForm = document.querySelector('#deleteForm');
+            document.querySelector('.table').addEventListener('click', function(e) {
+                if (e.target && e.target.closest('.btn-delete-category')) {
+                    e.preventDefault();
+                    let categoryId = e.target.closest('.btn-delete-category').getAttribute('data-id');
+                    if (confirm('Bu kategoriyi silmek istediğinize emin misiniz?')) {
+                        // Silme işlemi
+                        deleteForm.action = '/admin/category/' + categoryId; // Silme URL'sini ayarla
+                        deleteForm.submit(); // Formu gönder
+                    }
+                }
+            });
+        });
+    </script>
 @endpush

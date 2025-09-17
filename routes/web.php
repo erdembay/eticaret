@@ -33,7 +33,7 @@ Route::get('front' , [CategoryController::class, 'front']);
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.check'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('/orders', [AdminController::class, 'index'])->name('orders');
-    Route::resource('category', CategoryController::class);
+    Route::resource('category', CategoryController::class);// Türkçe açıklaması: Kategori kaynak rotalarını oluşturur. Yani, kategori ile ilgili tüm CRUD işlemleri için gerekli rotaları otomatik olarak tanımlar.
 });
 
 
