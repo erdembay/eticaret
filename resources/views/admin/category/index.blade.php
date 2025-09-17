@@ -66,7 +66,7 @@
                         <tfoot>
                         </tfoot>
                     </table>
-                        <form action="{{ route('admin.category.destroy', ['category' => $category->id]) }}" id="deleteForm" method="POST" style="display: inline-block;">
+                        <form action="" id="deleteForm" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                         </form>
@@ -92,12 +92,22 @@
             document.querySelector('.table').addEventListener('click', function(e) {
                 if (e.target && e.target.closest('.btn-delete-category')) {
                     e.preventDefault();
-                    let categoryId = e.target.closest('.btn-delete-category').getAttribute('data-id');
-                    if (confirm('Bu kategoriyi silmek istediğinize emin misiniz?')) {
-                        // Silme işlemi
-                        deleteForm.action = '/admin/category/' + categoryId; // Silme URL'sini ayarla
-                        deleteForm.submit(); // Formu gönder
-                    }
+                    Swal.fire({
+                        title: 'Emin misiniz?',
+                        text: "Bu işlem geri alınamaz!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Evet, sil!',
+                        cancelButtonText: 'Hayır, iptal et'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            let categoryId = e.target.closest('.btn-delete-category').getAttribute('data-id');
+                            deleteForm.action = '/admin/category/' + categoryId; // Silme URL'sini ayarla
+                            deleteForm.submit(); // Formu gönder
+                        }
+                    });
                 }
             });
         });
